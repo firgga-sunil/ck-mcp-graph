@@ -66,7 +66,7 @@ jobs:
             echo "✅ PIPELINE COMPLETED"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo ""
-            echo "**Previous Tag:** ${{ steps.get-latest-tag.outputs.latest_tag }}"
+            echo "**Previous Tag:** ${{ steps.version.outputs.previous_tag }}"
             echo "**New Tag:** ${{ steps.version.outputs.new_tag }}"
             echo "**Image:** \`${{ env.DOCKER_IMAGE_PATH }}:${{ steps.version.outputs.new_tag }}\`"
             echo "**Platforms:** linux/amd64, linux/arm64"

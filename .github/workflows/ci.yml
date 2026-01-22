@@ -38,7 +38,7 @@ jobs:
         uses: firgga-sunil/poc-app-of-apps/.github/actions/docker-build-push@main
         with:
           image: ${{ env.DOCKER_IMAGE_PATH }}
-          tag: ${{ steps.version.outputs.tag }}
+          new_tag: ${{ steps.version.outputs.new_tag }}
           username: ${{ secrets.GPR_USER }}
           password: ${{ secrets.GPR_TOKEN }}
 
@@ -46,18 +46,18 @@ jobs:
         uses: firgga-sunil/poc-app-of-apps/.github/actions/verify-image-upload@main
         with:
           image: ${{ env.DOCKER_IMAGE_PATH }}
-          tag: ${{ steps.version.outputs.tag }}  
+          new_tag: ${{ steps.version.outputs.new_tag }}
  
       - name: Create GitHub Release
         uses: firgga-sunil/poc-app-of-apps/.github/actions/create-github-release@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.version.outputs.tag }}
+          new_tag: ${{ steps.version.outputs.new_tag }}
           latest_tag: ${{ steps.version.outputs.latest_tag }}
           image: ${{ env.DOCKER_IMAGE_PATH }}
 
       # -------------------------------
-      # Summary
+      # Summary0
       # -------------------------------
       - name: Summary
         run: |
@@ -67,7 +67,7 @@ jobs:
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo ""
             echo "**Previous Tag:** ${{ steps.get-latest-tag.outputs.latest_tag }}"
-            echo "**New Tag:** ${{ steps.bump-version.outputs.new_tag }}"
-            echo "**Image:** \`${{ env.GHCR_IMAGE }}:${{ steps.bump-version.outputs.new_tag }}\`"
+            echo "**New Tag:** ${{ steps.version.outputs.new_tag }}"
+            echo "**Image:** \`${{ env.DOCKER_IMAGE_PATH }}:${{ steps.version.outputs.new_tag }}\`"
             echo "**Platforms:** linux/amd64, linux/arm64"
           } >> "$GITHUB_STEP_SUMMARY"

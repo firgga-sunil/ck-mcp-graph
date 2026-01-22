@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  GHCR_IMAGE: ghcr.io/ckgitrepouser/prod/ck-graph-mcp/ck-graph-mcp
+  DOCKER_IMAGE_PATH: ghcr.io/ckgitrepouser/prod/ck-graph-mcp/ck-graph-mcp
   DOCKER_REGISTRY: ghcr.io
 
 jobs:

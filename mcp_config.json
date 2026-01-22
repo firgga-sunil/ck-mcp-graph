@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "graph-analysis": {
+      "command": "/Users/anantharam.v/workspace/ck-graph-mcp/venv/bin/python",
+      "args": ["/Users/anantharam.v/workspace/ck-graph-mcp/mcp_server.py"]
+    }
+  }
+}

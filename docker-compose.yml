@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  graph-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: graph-analysis-mcp-server
+    ports:
+      - "8547:8547"
+    environment:
+      - PORT=8547
+      - HOST=0.0.0.0
+      - LOG_LEVEL=INFO
+      - GRAPH_API_BASE_URL=http://ac9248ac6be104c95987a0356fbd9ad6-d76d2f43834084df.elb.us-east-2.amazonaws.com:8081
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8547/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge
+

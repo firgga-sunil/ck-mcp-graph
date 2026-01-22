@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "graph-analysis-remote": {
+      "url": "http://localhost:8548/mcp",
+      "description": "Remote Graph Analysis MCP Server for distributed system insights"
+    }
+  }
+}
